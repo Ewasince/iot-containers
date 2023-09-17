@@ -1,0 +1,38 @@
+services:
+  main_container:
+    build:
+      context: main_controller
+    image: main_controller
+#    ports:
+#      - "7790:7790"
+#    environment:
+#      # used by migration service
+#      #- DATABASE_URL=postgresql://askug_user1:askug_user1@10.174.18.254:5439/ASKUG_ANALYTICS
+#      - DATABASE_URL=postgresql://askug_user1:askug_user1@pg_consumption-temp:5432/ASKUG_ANALYTICS
+#    restart: always
+#    healthcheck:
+#      test: [ "CMD-SHELL", "curl -s -f -X POST http://localhost:7790/api/v1.0/status | grep True || exit 1" ]
+#      start_period: 30s
+#      interval: 30s
+#      timeout: 10s
+#      retries: 3
+    networks:
+      - iot_network
+
+  gateway:
+    build:
+      context: gateway
+#    image: gateway
+    networks:
+      - iot_network
+
+  iot_device:
+    build:
+      context: iot_device
+    image: iot_device
+    networks:
+      - iot_network
+
+networks:
+  iot_network:
+    name: iot_network
