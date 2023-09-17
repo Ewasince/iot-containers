@@ -1,7 +1,7 @@
 services:
   main_container:
     build:
-      context: main_controller
+      context: ./main_controller
     image: main_controller
 #    ports:
 #      - "7790:7790"
@@ -21,14 +21,14 @@ services:
 
   gateway:
     build:
-      context: gateway
+      context: ./gateway
 #    image: gateway
     networks:
       - iot_network
 
   iot_device:
     build:
-      context: iot_device
+      context: ./iot_device
     image: iot_device
     networks:
       - iot_network

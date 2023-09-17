@@ -16,4 +16,4 @@ COPY . /app
 #EXPOSE 7790
 
 #
-CMD echo 'test' && cd /app && python ./main.py
+CMD python ./main.py
